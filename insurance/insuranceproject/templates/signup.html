@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1 style="color:brown"> Sign-Up Here </h1>
+<form action ="" method="POST" style="font-size:20px; padding:30px " >
+  {% csrf_token %}
+    <table>
+  {% for i in form %}
+        <tr><td>{{i.label_tag}}</td><td>{{i}}</td></tr>
+    {% endfor %}
+    </table>
+    <input  type="submit" class="btn btn-warning" value="submit">
+        <a class="btn btn-success" href="user_login">Login</a>
+</form>
+{% if messages%}
+    {% for i in messages %}
+        {{i}}
+    {% endfor %}
+{% endif %}
+{% endblock %}
+<h1> Hello {{name}} you signed up successfully</h1>

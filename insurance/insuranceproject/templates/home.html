@@ -1,0 +1,107 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block bg %}
+<body style="background-image:url({% static 'images/home.jpg' %}); background-repeat: no-repeat;
+background-size: 100%">{% endblock bg %}
+
+{% block content %}
+<center><div style='width:1000px;height:70px;' class="btn-group " role="group" aria-label="Basic checkbox toggle button group">
+  <input type="checkbox" onclick="document.location.href='show_data'" class="btn-check" id="btncheck1" autocomplete="off">
+  <label  style="font-size :20px;color: white ;" class="btn btn-success" for="btncheck1">Health insurance</label>
+
+  <input type="checkbox" onclick="document.location.href='vshow_data'" class="btn-check" id="btncheck2" autocomplete="off">
+  <label style="font-size :20px;color:white ;" class="btn btn-danger" for="btncheck2">vehicle insurance</label>
+
+  <input type="checkbox" onclick="document.location.href='fshow_data'" class="btn-check" id="btncheck3" autocomplete="off">
+  <label style="font-size :20px;color: white ;" class="btn btn-primary" for="btncheck3">Fire insurance</label>
+</div>
+<div>
+  <form method="post" action="home">
+      {% csrf_token %}
+    <br>
+    <br>
+      <label style="color:white;">Policy No.</label><input type="text" name="polacy_no">
+      <button type="submit">Submit</button>
+  </form>
+    <h1>{{temp}}</h1>
+</div>
+    <br>
+    <br>
+    <br>
+    <br>
+    <div>
+        {% if categories == 'health' %}
+<table class ='table table-bordered table-secondary'  border="5" >
+    <tr>
+        <th>polacy_no</th>
+        <th>name</th>
+        <th>fname</th>
+        <th>age</th>
+        <th>gender</th>
+        <th>date_brth</th>
+        <th>email</th>
+        <th>address</th>
+        <th>phone_no</th>
+    </tr>
+    <td>{{data.polacy_no}}</td>
+     <td> {{data.name}}</td>
+      <td> {{data.fname}}</td>
+       <td>{{data.age}}</td>
+      <td>{{data.gender}}</td>
+       <td>{{data.date_brth}}</td>
+      <td>{{data.email}}</td>
+       <td>{{data.address}}</td>
+      <td>{{data.phone_no}}</td>
+</table>
+        {% endif %}
+         {% if categories == 'fire' %}
+<table class ='table table-bordered table-secondary'  border="5" >
+    <tr>
+        <th>polacy_no</th>
+        <th>type_property</th>
+        <th>owner_name</th>
+        <th>vehicle_wheel</th>
+        <th>cause_name</th>
+        <th>fire_date</th>
+        <th>email</th>
+        <th>address</th>
+        <th>phone_no</th>
+    </tr>
+    <td>{{data.polacy_no}}</td>
+     <td> {{data.type_property}}</td>
+      <td> {{data.owner_name}}</td>
+       <td>{{data.vehicle_wheel}}</td>
+      <td>{{data.cause_name}}</td>
+       <td>{{data.fire_date}}</td>
+      <td>{{data.email}}</td>
+       <td>{{data.address}}</td>
+      <td>{{data.phone_no}}</td>
+</table>
+        {% endif %}
+         {% if categories == 'vmodel' %}
+<table class ='table table-bordered table-secondary'  border="5" >
+    <tr>
+        <th>polacy_no</th>
+        <th>name</th>
+        <th>fname</th>
+        <th>age</th>
+        <th>gender</th>
+        <th>date_brth</th>
+        <th>email</th>
+        <th>address</th>
+        <th>phone_no</th>
+    </tr>
+    <td>{{data.polacy_no}}</td>
+     <td> {{data.vehicle_no}}</td>
+      <td> {{data.owner_name}}</td>
+       <td>{{data.vehicle_wheel}}</td>
+      <td>{{data.vehicle_name}}</td>
+       <td>{{data.vehicle_date}}</td>
+      <td>{{data.email}}</td>
+       <td>{{data.address}}</td>
+      <td>{{data.phone_no}}</td>
+</table>
+        {% endif %}
+    </div>
+</center>
+{% endblock  %}

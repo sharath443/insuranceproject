@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block content %}
+<form action="" method="POST" style="padding:30px ;" >
+    {% csrf_token %}
+    {% if form.non_field_errors %}
+    {% for error in form.non_field_errors %}
+        <p class="er">{{error}}</p>
+        {% endfor %}
+    {% endif %}
+    <h1 style="color:brown"> Login Here </h1><br>
+    {% for fm in form %}
+        {{fm.label_tag}} {{fm}} {{fm.errors|striptags}} <br><br>
+    {% endfor %}
+    <input type="submit" class="btn btn-warning" value="Login">
+    <a class="btn btn-success" href="{% url 'sign_up' %}">Signup</a>
+</form>
+{% endblock %}
